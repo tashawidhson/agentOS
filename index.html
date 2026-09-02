@@ -205,6 +205,50 @@
   .t-panel h4{ font-size:22px; font-weight:700; margin-bottom:10px; }
   .t-panel p{ font-size:15px; color:#c7d2db; }
 
+  /* TOKENOMICS */
+  .tokenomics-shell{ background:var(--navy-dark); color:var(--white); }
+  .tokenomics-shell .kicker{ color:var(--green); }
+  .tokenomics-shell h2.section-title{ color:var(--white); margin-bottom:14px; }
+  .tok-sub{ max-width:600px; color:#c7d2db; font-size:15.5px; margin-bottom:36px; }
+  .tok-card{ background:var(--white); border-radius:6px; overflow:hidden; box-shadow:0 24px 50px rgba(0,0,0,.28); }
+  .tok-tabs{ display:flex; flex-wrap:wrap; border-bottom:1px solid #e6e6e6; background:var(--off-white); }
+  .tok-tabs button{
+    flex:1; min-width:180px; font-family:inherit; font-weight:600; font-size:13.5px; color:var(--gray);
+    background:transparent; border:none; padding:18px 14px; cursor:pointer; border-bottom:3px solid transparent; transition:all .2s ease;
+  }
+  .tok-tabs button:hover{ color:var(--navy); }
+  .tok-tabs button.active{ color:var(--navy); background:var(--white); border-bottom-color:var(--green); }
+  .tok-panel{ padding:34px 38px; animation:fadeUp .35s ease forwards; }
+  .tok-lead{ font-size:19px; font-weight:600; color:var(--navy); margin-bottom:22px; }
+  .tok-note{ font-size:13.5px; color:var(--gray); margin-top:20px; }
+  .tok-link{ color:var(--green-dark); font-weight:600; }
+  .tok-price-row{ display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+  @media(max-width:600px){ .tok-price-row{ grid-template-columns:1fr; } }
+  .tok-price-card{ background:var(--off-white); border-radius:4px; padding:20px 22px; }
+  .tok-price-card.hl{ background:#eef7e2; border:1.5px solid var(--green); }
+  .tp-tag{ font-size:11.5px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--navy); margin-bottom:10px; }
+  .tp-bar{ height:8px; background:#dfe3e6; border-radius:6px; overflow:hidden; margin-bottom:12px; }
+  .tp-fill{ height:100%; background:var(--green); border-radius:6px; }
+  .tok-price-card p{ font-size:13px; color:var(--gray); }
+  .tok-gov-list{ display:flex; flex-direction:column; gap:12px; }
+  .tok-gov-list div{ font-size:14px; color:var(--charcoal); padding:12px 16px; background:var(--off-white); border-left:3px solid var(--green); border-radius:2px; }
+  .tok-gov-list strong{ display:block; color:var(--navy); font-size:13.5px; margin-bottom:3px; }
+
+  /* CONTRACT TERMS */
+  .terms-grid{ display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:34px; }
+  @media(max-width:760px){ .terms-grid{ grid-template-columns:1fr; } }
+  .terms-card{ background:var(--white); border:1px solid #e2e6ea; border-radius:3px; padding:22px 24px; }
+  .terms-card .tc-label{ font-size:11px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase; color:var(--green-dark); margin-bottom:8px; }
+  .terms-card h4{ font-size:16px; font-weight:700; color:var(--navy); margin-bottom:6px; }
+  .terms-card p{ font-size:13.5px; color:var(--gray); }
+  .swap-box{ margin-top:22px; background:var(--navy); border-radius:3px; padding:24px 28px; color:var(--white); }
+  .swap-box .sw-label{ font-size:11px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase; color:var(--green); margin-bottom:6px; }
+  .swap-box h4{ font-size:17px; font-weight:700; margin-bottom:14px; }
+  .swap-list{ display:grid; grid-template-columns:repeat(2, 1fr); gap:10px; }
+  @media(max-width:560px){ .swap-list{ grid-template-columns:1fr; } }
+  .swap-list div{ font-size:13.5px; color:#dfe6ec; display:flex; gap:8px; align-items:flex-start; }
+  .swap-list div::before{ content:'✓'; color:var(--green); font-weight:700; flex-shrink:0; }
+
   /* ---------- CONSUMPTION ---------- */
   .gauge-shell{ margin-top:44px; max-width:640px; }
   .gauge-row{ margin-bottom:26px; }
@@ -277,6 +321,7 @@
       <a href="#stop-experiments">Approach</a>
       <a href="#directory">Agents</a>
       <a href="#tower">Control Tower</a>
+      <a href="#tokenomics">Tokenomics</a>
       <a href="#risk">Accountability</a>
       <a href="#ecosystem">Operating Model</a>
     </nav>
@@ -465,24 +510,62 @@
   </div>
 </section>
 
-<!-- CONSUMPTION -->
-<section>
+<!-- TOKENOMICS -->
+<section id="tokenomics" class="tokenomics-shell">
   <div class="wrap reveal">
-    <div class="kicker">Consumption Management</div>
-    <h2 class="section-title">AI should create more value than it consumes.</h2>
-    <div class="rule"></div>
-    <p style="max-width:640px; color:var(--charcoal); font-size:15.5px;">More AI consumption isn't the goal. More business value is. AgentOS monitors the relationship between Agent consumption and the value each Agent creates.</p>
-    <div class="gauge-shell" id="gaugeShell">
-      <div class="gauge-row">
-        <div class="g-label"><span>Value Created</span><span>Target: above consumption</span></div>
-        <div class="gauge-track"><div class="gauge-fill value" id="gaugeValue"></div></div>
+    <div class="kicker">Priced By Agent. Earned By Outcome.</div>
+    <h2 class="section-title">Tokenomics.</h2>
+    <p class="tok-sub">More AI consumption isn't the goal. More business value is. Click a pillar to see how AgentOS keeps the economics honest.</p>
+
+    <div class="tok-card">
+      <div class="tok-tabs" id="tokTabs">
+        <button class="active" data-tab="consumption">Consumption Management</button>
+        <button data-tab="pricing">Outcome-Based Pricing</button>
+        <button data-tab="governance">Governance &amp; Management</button>
       </div>
-      <div class="gauge-row">
-        <div class="g-label"><span>Agent Consumption</span><span>Monitored continuously</span></div>
-        <div class="gauge-track"><div class="gauge-fill consumption" id="gaugeCons"></div></div>
+
+      <div class="tok-panel" id="tokPanelConsumption">
+        <p class="tok-lead">Monitor costs. Maximize ROI. Optimize or replace underperforming agents.</p>
+        <div class="gauge-shell" id="gaugeShell">
+          <div class="gauge-row">
+            <div class="g-label"><span>Value Created</span><span>Target: above consumption</span></div>
+            <div class="gauge-track"><div class="gauge-fill value" id="gaugeValue"></div></div>
+          </div>
+          <div class="gauge-row">
+            <div class="g-label"><span>Agent Consumption</span><span>Monitored continuously</span></div>
+            <div class="gauge-track"><div class="gauge-fill consumption" id="gaugeCons"></div></div>
+          </div>
+        </div>
+        <p class="tok-note">If the economics stop making sense, we don't let the Agent keep consuming — we optimize it, redesign it, or replace it. Value per Agent, not AI for AI's sake.</p>
+      </div>
+
+      <div class="tok-panel" id="tokPanelPricing" hidden>
+        <p class="tok-lead">50% at risk. Verified outcomes. Priced by class, not seat.</p>
+        <div class="tok-price-row">
+          <div class="tok-price-card">
+            <div class="tp-tag">Standard Class</div>
+            <div class="tp-bar"><div class="tp-fill" style="width:45%;"></div></div>
+            <p>Everyday productivity Agents — priced for volume, still tied to performance.</p>
+          </div>
+          <div class="tok-price-card hl">
+            <div class="tp-tag">Mission-Critical Class</div>
+            <div class="tp-bar"><div class="tp-fill" style="width:85%;"></div></div>
+            <p>Revenue- or risk-bearing Agents — higher accountability, higher fee-at-risk weighting.</p>
+          </div>
+        </div>
+        <p class="tok-note">A meaningful share of the annual fee is earned only when agreed telemetry confirms the Agent is performing. <a href="#risk" class="tok-link">See the full 50%-at-risk model →</a></p>
+      </div>
+
+      <div class="tok-panel" id="tokPanelGovernance" hidden>
+        <p class="tok-lead">Complete governance, onboarding, and lifecycle management are at extra cost.</p>
+        <div class="tok-gov-list">
+          <div><strong>Governance</strong>Policy, compliance and access controls for every Agent in the fleet.</div>
+          <div><strong>Onboarding</strong>Structured go-live for each new Agent or Cowork Workpack.</div>
+          <div><strong>Lifecycle Management</strong>Ongoing refine, retrain and replace decisions as conditions change.</div>
+        </div>
+        <p class="tok-note">Implementation and AgentOS are included in the base fee. Microsoft licensing and Agent consumption are billed separately.</p>
       </div>
     </div>
-    <p class="gauge-note">If the economics stop making sense, we don't let the Agent keep consuming — we optimize it, redesign it, or replace it. Value per Agent, not AI for AI's sake.</p>
   </div>
 </section>
 
@@ -505,6 +588,30 @@
           <div class="yes">Production data. Agreed thresholds. Verified performance.</div>
         </div>
         <p style="font-size:14.5px; color:var(--gray);">If an Agent misses the agreed value, cX works to refine, retrain or replace it. That's what accountability for AI looks like.</p>
+      </div>
+    </div>
+
+    <div class="terms-grid">
+      <div class="terms-card">
+        <div class="tc-label">What You Contract</div>
+        <h4>Managed Agents</h4>
+        <p>Always live. Continuously optimized. Performance and business outcomes are reviewed every quarter as part of the Quarterly Sprint Review.</p>
+      </div>
+      <div class="terms-card">
+        <div class="tc-label">The Terms</div>
+        <h4>36-Month Agreement</h4>
+        <p>Reviewed every 6 months. If an Agent stops delivering value, refine, retrain or replace is always included by agreement — no separate change order.</p>
+      </div>
+    </div>
+
+    <div class="swap-box">
+      <div class="sw-label">The Swap — Worked Example</div>
+      <h4>10 Agents Under Management</h4>
+      <div class="swap-list">
+        <div>Monitor performance</div>
+        <div>Improve continuously</div>
+        <div>Replace underperforming agents</div>
+        <div>Maintain business outcomes</div>
       </div>
     </div>
   </div>
@@ -775,6 +882,27 @@
     });
   }, { threshold: 0.4 });
   gio.observe(gaugeShell);
+
+  // Tokenomics tabs
+  const tokTabs = document.querySelectorAll('#tokTabs button');
+  const tokPanels = {
+    consumption: document.getElementById('tokPanelConsumption'),
+    pricing: document.getElementById('tokPanelPricing'),
+    governance: document.getElementById('tokPanelGovernance')
+  };
+  tokTabs.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tokTabs.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      Object.values(tokPanels).forEach(p => p.hidden = true);
+      const key = btn.dataset.tab;
+      tokPanels[key].hidden = false;
+      if(key === 'consumption'){
+        document.getElementById('gaugeValue').style.width = '82%';
+        document.getElementById('gaugeCons').style.width = '46%';
+      }
+    });
+  });
 
   // Ecosystem stack
   const stackItems = document.querySelectorAll('.stack-item');
